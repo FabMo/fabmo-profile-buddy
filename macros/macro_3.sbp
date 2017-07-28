@@ -4,15 +4,15 @@
 ' Values in this section may be changed to suit different homing configurations
 &homing_input = 3
 &homing_speed = 3.0
-&x_search = -38.0
+&x_search = -28.0
 &x_search_speed = 3.0
 &x_backoff = 0.1
 
-&y_search = -26.0
+&y_search = -34.0
 &y_backoff = 0.5
 &y_search_speed = 3.0
 
-&z_search = 8.0
+&z_search = 12.0
 &z_backoff = -0.5
 &z_search_speed = 1.5
 

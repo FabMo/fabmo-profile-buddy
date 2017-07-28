@@ -5,7 +5,7 @@
 ' Note that these are WEAK assignments - meant to convey the defaults.
 &ZZeroInput := 1
 
-&ZZeroSearchDistance := -6.0
+&ZZeroSearchDistance := -12.0
 &ZZeroSearchSpeedSlow := 0.1
 &ZZeroSearchSpeedFast := 0.5
 &ZZeroPlateThickness := 0.57 ' 0.118 for electrical plate 0.57 for pressure plate
