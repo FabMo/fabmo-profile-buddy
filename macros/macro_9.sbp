@@ -1,3 +1,21 @@
 '!FABMO!name:Tool Change
-'!FABMO!description:Manual Tool Change (MTC)
+'!FABMO!description:Manual Tool Change (MTC
 ' Tool Change (temporary, simplified)
+
+' Settings - edit these to change how the routine behaves
+&parkX = 0
+&parkY = 0
+&parkZ = 3.0
+&promptForToolChange = 1
+
+IF &promptForToolChange == 0 THEN GOTO skip_tool_change
+' Main Program
+IF %(3) >= &parkZ THEN GOTO park
+JZ,&parkZ
+GOTO park
+J2,0,0
+PAUSE "Manual Tool Change"
+END
+
+skip_tool_change:
+END

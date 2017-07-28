@@ -1,76 +1,37 @@
 '!FABMO!name:Home Tool
 '!FABMO!description:Automatically Set Axis Zero for XY
-' -------- Settings Section --------
-' Values in this section may be changed to suit different homing configurations
-&homing_input = 3
-&homing_speed = 3.0
-&x_search = -28.0
-&x_search_speed = 3.0
-&x_backoff = 0.1
+&XBackoff = 0.375
+&YBackoff = 0.875
+&ZBackoff = 0.100
 
-&y_search = -34.0
-&y_backoff = 0.5
-&y_search_speed = 3.0
+&xInput = 2
+&yInput = 3
+&zInput = 0
 
-&z_search = 12.0
-&z_backoff = -0.5
-&z_search_speed = 1.5
+IF &zInput == 0 THEN GOTO skip_z
+GOSUB HomeZ
+skip_z:
+	GOSUB HomeX
+	GOSUB HomeY
+	END
 
-&home_position_x = 1.25
-&home_position_y = 1.25
-
-' -------- Main Program Section --------
-GOSUB backoff_if_needed
-GOSUB home_x
-GOSUB home_y
-GOSUB home_z
-GOSUB go_home
-
-END
-
-' -------- Subroutines --------
-' The functions in this section are called by the main program
-home_x:
-	GOSUB get_positions
-    PX,&xpos+&x_search,&x_search_speed,&homing_input
-    ZX
-    JX,&x_backoff
-    ZX
-    RETURN
-
-home_y:
-	GOSUB get_positions
-    PY,&ypos+&y_search,&y_search_speed,&homing_input
-    ZY
-    JY,&y_backoff
-    ZY
-    RETURN
-
-home_z:
-	GOSUB get_positions
-    PZ,&zpos+&z_search,&z_search_speed,&homing_input
-    ZZ
-    JZ,&z_backoff
-    ZZ
-    RETURN
-
-go_home:
-	J2 &home_position_x, &home_position_y
-    Z2
+HomeX:
+	ZX	
+	PX,-96,3,&xInput
+    JX,%(1)+&XBackoff
+	VA,0,,,,,,0,,,,,
+	RETURN
     
-get_positions:
-	&xpos = %(1)
-    &ypos = %(2)
-    &zpos = %(3)
-    &homing_input_value = %(51)
-    RETURN
-
-backoff_if_needed:
-	GOSUB get_positions
-    IF &homing_input_value == 1 THEN GOSUB backoff
-    RETURN
+HomeY:
+	ZY	
+	PY,-48,3,&yInput
+    JY,%(2)+&YBackoff
+	VA,,0,,,,,,0,,,,
+	RETURN
     
-backoff:
-	GOSUB get_positions
-    M3,&xpos+&x_backoff,&ypos+&y_backoff,&zpos+&z_backoff
-    RETURN
+HomeZ:
+	ZZ	
+	PZ,10,1,5
+    JZ,%(3)-&ZBackoff
+	VA,,,0,,,,,,0,,,
+	RETURN
