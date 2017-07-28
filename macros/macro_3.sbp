@@ -1,7 +1,7 @@
 '!FABMO!name:Home Tool
 '!FABMO!description:Automatically Set Axis Zero for XY
-&XBackoff = 0.375
-&YBackoff = 0.875
+&XBackoff = 0.75
+&YBackoff = 0.75
 &ZBackoff = 0.100
 
 &xInput = 2
@@ -16,22 +16,19 @@ skip_z:
 	END
 
 HomeX:
-	ZX	
-	PX,-96,3,&xInput
+	PX,%(1)-50,2,&xInput
     JX,%(1)+&XBackoff
 	VA,0,,,,,,0,,,,,
 	RETURN
     
 HomeY:
-	ZY	
-	PY,-48,3,&yInput
+	PY,%(2)-50,1,&yInput
     JY,%(2)+&YBackoff
 	VA,,0,,,,,,0,,,,
 	RETURN
     
 HomeZ:
-	ZZ	
-	PZ,10,1,5
+	PZ,%(3)+10,1,5
     JZ,%(3)-&ZBackoff
 	VA,,,0,,,,,,0,,,
 	RETURN

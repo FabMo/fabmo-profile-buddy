@@ -5,7 +5,7 @@
     "auth_timeout": 30,
     "auth_required": true,
     "auth_input": 2,
-    "ap_input": 2,
+    "ap_input": 0,
     "ap_time": 8,
     "default_app": "home",
     "envelope": {
