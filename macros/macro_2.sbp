@@ -43,4 +43,4 @@ check_input:
     RETURN
 
 check_input_fail:
-	END "Input switch is already tripped.  Cannot zero the tool."
+	FAIL "Input switch is already tripped.  Cannot zero the tool."
